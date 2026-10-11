@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | Bloomora</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .confirmation-page {
+            min-height: 100vh;
+            background: #fffaf8;
+            padding-top: 100px;
+        }
+
+        .confirmation-container {
+            max-width: 850px;
+            margin: auto;
+            padding: 70px 20px 100px;
+        }
+
+        .confirmation-card {
+            background: white;
+            border-radius: 30px;
+            padding: 55px 45px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(55, 30, 35, 0.10);
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: #f3e4e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+        }
+
+        .confirmation-label {
+            color: #9a6472;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .confirmation-card h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            color: #34262a;
+            margin: 15px 0;
+        }
+
+        .confirmation-message {
+            color: #777;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .order-details {
+            margin-top: 40px;
+            padding: 28px;
+            border-radius: 20px;
+            background: #fff8f6;
+            text-align: left;
+        }
+
+        .order-details h2 {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            color: #34262a;
+            margin-bottom: 22px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eadfe0;
+            color: #666;
+        }
+
+        .detail-row strong {
+            color: #34262a;
+            text-align: right;
+        }
+
+        .ordered-items {
+            margin-top: 25px;
+        }
+
+        .ordered-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            color: #555;
+            border-bottom: 1px solid #eadfe0;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 22px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #34262a;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+
+        .confirmation-button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            transition: 0.3s ease;
+        }
+
+        .primary-confirmation {
+            background: #34262a;
+            color: white;
+        }
+
+        .primary-confirmation:hover {
+            background: #9a6472;
+            transform: translateY(-2px);
+        }
+
+        .secondary-confirmation {
+            border: 1px solid #d9c5c7;
+            color: #684852;
+            background: white;
+        }
+
+        .secondary-confirmation:hover {
+            background: #f7eded;
+        }
+
+        .thank-you {
+            margin-top: 35px;
+            font-family: Georgia, serif;
+            color: #9a6472;
+            font-size: 1.15rem;
+        }
+
+        @media (max-width: 600px) {
+            .confirmation-container {
+                padding: 45px 15px 70px;
+            }
+
+            .confirmation-card {
+                padding: 40px 22px;
+            }
+
+            .order-details {
+                padding: 20px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .detail-row strong {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body class="confirmation-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Bloomora
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="flowers.html">Flowers</a>
+            <a href="bouquets.html">Bouquets</a>
+            <a href="occasions.html">Occasions</a>
+            <a href="index.html#about">About</a>
+        </div>
+
+        <a href="cart.html" class="cart-button">
+            🛍️ Cart
+        </a>
+
+    </nav>
+
+
+    <!-- CONFIRMATION -->
+    <main class="confirmation-container">
+
+        <section class="confirmation-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <span class="confirmation-label">
+                Bloomora
+            </span>
+
+            <h1>Order Confirmed!</h1>
+
+            <p class="confirmation-message">
+                Thank you for choosing Bloomora.
+                Your beautiful flowers are getting ready
+                to make someone's day extra special. 🌸
+            </p>
+
+
+            <!-- ORDER DETAILS -->
+            <div class="order-details">
+
+                <h2>Order Details</h2>
+
+                <div class="detail-row">
+
+                    <span>
+                        Customer
+                    </span>
+
+                    <strong id="customerName">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Order Date
+                    </span>
+
+                    <strong id="orderDate">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Payment
+                    </span>
+
+                    <strong id="paymentMethod">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <!-- ITEMS -->
+                <div class="ordered-items">
+
+                    <h3 style="color:#34262a; margin-bottom:10px;">
+                        Your Flowers
+                    </h3>
+
+                    <div id="orderItems">
+                        <!-- JavaScript will add items here -->
+                    </div>
+
+                </div>
+
+
+                <div class="order-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="orderTotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p class="thank-you">
+                Thank you for letting Bloomora be part of your special moment. 💐
+            </p>
+
+
+            <!-- BUTTONS -->
+            <div class="confirmation-buttons">
+
+                <a
+                    href="index.html"
+                    class="confirmation-button primary-confirmation"
+                >
+                    Back to Home
+                </a>
+
+                <a
+                    href="flowers.html"
+                    class="confirmation-button secondary-confirmation"
+                >
+                    Continue Shopping
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h2>Bloomora</h2>
+
+            <p>
+                Where flowers speak from the heart.
+            </p>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Bloomora. Made with love 🌸
+        </p>
+
+    </footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const order = JSON.parse(
+                localStorage.getItem("bloomoraOrder")
+            );
+
+            if (!order) {
+                document.getElementById("customerName").textContent = "Guest";
+                document.getElementById("orderDate").textContent =
+                    new Date().toLocaleDateString("en-IN");
+
+                document.getElementById("paymentMethod").textContent =
+                    "Not Available";
+
+                return;
+            }
+
+
+            document.getElementById("customerName").textContent =
+                order.customerName || "Guest";
+
+
+            document.getElementById("orderDate").textContent =
+                order.orderDate ||
+                new Date().toLocaleDateString("en-IN");
+
+
+            document.getElementById("paymentMethod").textContent =
+                order.paymentMethod || "Cash on Delivery";
+
+
+            const orderItems =
+                document.getElementById("orderItems");
+
+            orderItems.innerHTML = "";
+
+
+            let total = 0;
+
+
+            if (order.items && order.items.length > 0) {
+
+                order.items.forEach(function (item) {
+
+                    const itemTotal =
+                        Number(item.price) * Number(item.quantity);
+
+                    total += itemTotal;
+
+
+                    const itemElement =
+                        document.createElement("div");
+
+                    itemElement.className = "ordered-item";
+
+                    itemElement.innerHTML = `
+                        <span>
+                            ${item.name} × ${item.quantity}
+                        </span>
+
+                        <strong>
+                            ₹${itemTotal.toLocaleString("en-IN")}
+                        </strong>
+                    `;
+
+                    orderItems.appendChild(itemElement);
+
+                });
+
+            } else {
+
+                orderItems.innerHTML = `
+                    <p style="color:#777;">
+                        Order items are not available.
+                    </p>
+                `;
+
+                total = Number(order.total) || 0;
+            }
+
+
+            document.getElementById("orderTotal").textContent =
+                "₹" + total.toLocaleString("en-IN");
+
+        });
+    </script>
+
+</body>
+</html>

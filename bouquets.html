@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bloomora | Bouquets</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        /* ================= BOUQUET HERO ================= */
+
+        .bouquets-page {
+            background: #fffafc;
+        }
+
+        .bouquets-hero {
+            position: relative;
+
+            width: 100%;
+            height: 78vh;
+            min-height: 620px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .bouquets-background-video {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+
+            animation:
+                bouquetVideoZoom
+                14s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+        .bouquets-video-overlay {
+            position: absolute;
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(25, 5, 15, 0.88),
+                    rgba(45, 10, 25, 0.30),
+                    rgba(20, 4, 12, 0.78)
+                );
+        }
+
+        .bouquets-hero-content {
+            position: relative;
+
+            z-index: 3;
+
+            max-width: 850px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            color: white;
+
+            animation:
+                bouquetReveal
+                1.3s
+                ease
+                forwards;
+        }
+
+        .bouquets-hero-content h1 {
+
+            margin: 20px 0;
+
+            font-size:
+                clamp(
+                    50px,
+                    7vw,
+                    90px
+                );
+
+            line-height: 1;
+
+            font-weight: 400;
+
+            letter-spacing: -3px;
+        }
+
+        .bouquets-hero-content h1 span {
+
+            display: block;
+
+            font-family: Georgia, serif;
+
+            font-style: italic;
+
+            color: #f6c9da;
+        }
+
+        .bouquets-hero-content
+        > p:not(.section-label) {
+
+            max-width: 620px;
+
+            margin: 0 auto 30px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.82
+                );
+        }
+
+
+        /* ================= BOUQUET COLLECTION ================= */
+
+        .bouquet-products {
+
+            padding:
+                110px
+                7%;
+
+            background: #fffafc;
+        }
+
+        .bouquet-heading {
+
+            text-align: center;
+
+            margin-bottom: 65px;
+        }
+
+        .bouquet-heading h2 {
+
+            margin: 15px 0;
+
+            font-size:
+                clamp(
+                    40px,
+                    5vw,
+                    65px
+                );
+
+            font-weight: 400;
+        }
+
+        .bouquet-heading h2 span {
+
+            font-family: Georgia, serif;
+
+            font-style: italic;
+        }
+
+        .bouquet-heading > p:last-child {
+
+            color: #806a74;
+        }
+
+
+        /* ================= BOUQUET GRID ================= */
+
+        .premium-bouquet-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap: 28px;
+        }
+
+
+        /* ================= BOUQUET CARD ================= */
+
+        .premium-bouquet-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: white;
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(
+                    65,
+                    25,
+                    45,
+                    0.08
+                );
+
+            transition:
+                0.5s
+                ease;
+        }
+
+        .premium-bouquet-card:hover {
+
+            transform:
+                translateY(
+                    -12px
+                );
+
+            box-shadow:
+                0 30px 65px
+                rgba(
+                    65,
+                    25,
+                    45,
+                    0.16
+                );
+        }
+
+
+        /* ================= BOUQUET IMAGE ================= */
+
+        .premium-bouquet-image {
+
+            height: 330px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            font-size: 125px;
+
+            overflow: hidden;
+        }
+
+        .premium-bouquet-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.28
+                );
+        }
+
+        .premium-bouquet-card:hover
+        .premium-bouquet-image {
+
+            font-size: 145px;
+        }
+
+        .romantic-bg {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7d4e0,
+                    #eeb1c8
+                );
+        }
+
+        .luxury-bg {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ead1dc,
+                    #c99eb4
+                );
+        }
+
+        .pastel-bg {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6e2eb,
+                    #dfc2d2
+                );
+        }
+
+        .sunshine-bg {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffefbd,
+                    #f3d36e
+                );
+        }
+
+        .white-bg {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f7f7,
+                    #ddd8df
+                );
+        }
+
+        .celebration-bg {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4cadb,
+                    #dca9c2
+                );
+        }
+
+
+        /* ================= CARD DETAILS ================= */
+
+        .premium-bouquet-info {
+
+            padding: 30px;
+        }
+
+        .bouquet-tag {
+
+            display: inline-block;
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+
+            color: #a15d79;
+
+            margin-bottom: 8px;
+        }
+
+        .premium-bouquet-info h3 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 26px;
+
+            font-weight: 400;
+
+            margin-bottom: 10px;
+        }
+
+        .premium-bouquet-info p {
+
+            min-height: 48px;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            color: #806a74;
+        }
+
+        .bouquet-price-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            margin-top: 22px;
+        }
+
+        .bouquet-price {
+
+            font-size: 21px;
+
+            font-weight: 600;
+        }
+
+        .bouquet-add {
+
+            border: none;
+
+            padding:
+                12px
+                19px;
+
+            border-radius: 30px;
+
+            background:
+                #321622;
+
+            color: white;
+
+            font-size: 11px;
+
+            transition:
+                0.3s
+                ease;
+        }
+
+        .bouquet-add:hover {
+
+            transform:
+                translateY(
+                    -3px
+                );
+
+            background:
+                #6d304d;
+        }
+
+
+        /* ================= FEATURED SECTION ================= */
+
+        .bouquet-feature {
+
+            margin:
+                0
+                7%
+                100px;
+
+            padding:
+                80px
+                7%;
+
+            border-radius: 35px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            align-items: center;
+
+            gap: 60px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #30131f,
+                    #672d47
+                );
+
+            color: white;
+        }
+
+        .bouquet-feature h2 {
+
+            margin:
+                15px
+                0
+                20px;
+
+            font-size:
+                clamp(
+                    40px,
+                    5vw,
+                    65px
+                );
+
+            font-weight: 400;
+        }
+
+        .bouquet-feature h2 span {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-style: italic;
+
+            color: #f4c5d7;
+        }
+
+        .bouquet-feature p {
+
+            line-height: 1.8;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.72
+                );
+
+            max-width: 500px;
+        }
+
+        .bouquet-feature-art {
+
+            min-height: 300px;
+
+            border-radius: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 150px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+        }
+
+
+        /* ================= ANIMATIONS ================= */
+
+        @keyframes bouquetVideoZoom {
+
+            from {
+                transform:
+                    scale(1.02);
+            }
+
+            to {
+                transform:
+                    scale(1.1);
+            }
+        }
+
+        @keyframes bouquetReveal {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(
+                        35px
+                    );
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(
+                        0
+                    );
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .premium-bouquet-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+            }
+
+            .bouquet-feature {
+
+                grid-template-columns:
+                    1fr;
+
+                padding: 50px 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .bouquets-hero {
+
+                min-height: 560px;
+            }
+
+            .bouquets-hero-content h1 {
+
+                font-size: 50px;
+            }
+
+            .premium-bouquet-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .premium-bouquet-image {
+
+                height: 280px;
+            }
+
+            .bouquet-feature {
+
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .bouquet-feature-art {
+
+                min-height: 240px;
+
+                font-size: 110px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body class="bouquets-page">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌸 <span>Bloom</span>ora
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="flowers.html">
+                Flowers
+            </a>
+
+            <a href="bouquets.html">
+                Bouquets
+            </a>
+
+            <a href="occasions.html">
+                Occasions
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+        </nav>
+
+        <a
+            href="cart.html"
+            class="cart-button">
+
+            🛒 Cart
+
+        </a>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="bouquets-hero">
+
+        <video
+            class="bouquets-background-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+
+            <source
+                src="./bouquet-video.mp4"
+                type="video/mp4">
+
+        </video>
+
+
+        <div class="bouquets-video-overlay"></div>
+
+
+        <div class="bouquets-hero-content">
+
+            <p class="section-label">
+                BLOOMORA SIGNATURE
+            </p>
+
+            <h1>
+                Wrapped With
+                <span>Love</span>
+            </h1>
+
+            <p>
+                Thoughtfully designed bouquets created
+                to turn beautiful feelings into
+                unforgettable memories.
+            </p>
+
+            <a
+                href="#bouquetCollection"
+                class="btn primary-btn">
+
+                Discover Bouquets
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COLLECTION ================= -->
+
+    <main
+        class="bouquet-products"
+        id="bouquetCollection">
+
+        <div class="bouquet-heading">
+
+            <p class="section-label">
+                SIGNATURE COLLECTION
+            </p>
+
+            <h2>
+                Bouquets Made
+                <span>With Heart</span>
+            </h2>
+
+            <p>
+                Find the perfect arrangement for someone special.
+            </p>
+
+        </div>
+
+
+        <div class="premium-bouquet-grid">
+
+
+            <!-- 1 -->
+
+            <div class="premium-bouquet-card">
+
+                <div
+                    class="premium-bouquet-image romantic-bg">
+
+                    💐
+
+                </div>
+
+                <div class="premium-bouquet-info">
+
+                    <span class="bouquet-tag">
+                        ROMANTIC
+                    </span>
+
+                    <h3>
+                        Forever Love
+                    </h3>
+
+                    <p>
+                        A romantic arrangement created
+                        for expressing timeless love.
+                    </p>
+
+                    <div class="bouquet-price-row">
+
+                        <span class="bouquet-price">
+                            ₹899
+                        </span>
+
+                        <button
+                            class="bouquet-add"
+                            onclick="addToCart('Forever Love', 899)">
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+
+            <div class="premium-bouquet-card">
+
+                <div
+                    class="premium-bouquet-image luxury-bg">
+
+                    🌹
+
+                </div>
+
+                <div class="premium-bouquet-info">
+
+                    <span class="bouquet-tag">
+                        PREMIUM
+                    </span>
+
+                    <h3>
+                        Blooming Beauty
+                    </h3>
+
+                    <p>
+                        A luxurious floral arrangement
+                        for unforgettable moments.
+                    </p>
+
+                    <div class="bouquet-price-row">
+
+                        <span class="bouquet-price">
+                            ₹1,199
+                        </span>
+
+                        <button
+                            class="bouquet-add"
+                            onclick="addToCart('Blooming Beauty', 1199)">
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div class="premium-bouquet-card">
+
+                <div
+                    class="premium-bouquet-image pastel-bg">
+
+                    🌷
+
+                </div>
+
+                <div class="premium-bouquet-info">
+
+                    <span class="bouquet-tag">
+                        PASTEL
+                    </span>
+
+                    <h3>
+                        Soft Petals
+                    </h3>
+
+                    <p>
+                        Soft pastel flowers for a
+                        gentle and elegant surprise.
+                    </p>
+
+                    <div class="bouquet-price-row">
+
+                        <span class="bouquet-price">
+                            ₹999
+                        </span>
+
+                        <button
+                            class="bouquet-add"
+                            onclick="addToCart('Soft Petals', 999)">
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+
+            <div class="premium-bouquet-card">
+
+                <div
+                    class="premium-bouquet-image sunshine-bg">
+
+                    🌻
+
+                </div>
+
+                <div class="premium-bouquet-info">
+
+                    <span class="bouquet-tag">
+                        HAPPY
+                    </span>
+
+                    <h3>
+                        Sunshine Smile
+                    </h3>
+
+                    <p>
+                        Bright yellow blooms that bring
+                        happiness wherever they go.
+                    </p>
+
+                    <div class="bouquet-price-row">
+
+                        <span class="bouquet-price">
+                            ₹799
+                        </span>
+
+                        <button
+                            class="bouquet-add"
+                            onclick="addToCart('Sunshine Smile', 799)">
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div class="premium-bouquet-card">
+
+                <div
+                    class="premium-bouquet-image white-bg">
+
+                    🌸
+
+                </div>
+
+                <div class="premium-bouquet-info">
+
+                    <span class="bouquet-tag">
+                        ELEGANT
+                    </span>
+
+                    <h3>
+                        Pure Elegance
+                    </h3>
+
+                    <p>
+                        A graceful white floral arrangement
+                        with a peaceful feeling.
+                    </p>
+
+                    <div class="bouquet-price-row">
+
+                        <span class="bouquet-price">
+                            ₹1,299
+                        </span>
+
+                        <button
+                            class="bouquet-add"
+                            onclick="addToCart('Pure Elegance', 1299)">
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 6 -->
+
+            <div class="premium-bouquet-card">
+
+                <div
+                    class="premium-bouquet-image celebration-bg">
+
+                    🌺
+
+                </div>
+
+                <div class="premium-bouquet-info">
+
+                    <span class="bouquet-tag">
+                        CELEBRATION
+                    </span>
+
+                    <h3>
+                        Celebration Bloom
+                    </h3>
+
+                    <p>
+                        A colourful arrangement made
+                        for joyful celebrations.
+                    </p>
+
+                    <div class="bouquet-price-row">
+
+                        <span class="bouquet-price">
+                            ₹1,499
+                        </span>
+
+                        <button
+                            class="bouquet-add"
+                            onclick="addToCart('Celebration Bloom', 1499)">
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FEATURE ================= -->
+
+    <section class="bouquet-feature">
+
+        <div>
+
+            <p class="section-label">
+                BLOOMORA SIGNATURE
+            </p>
+
+            <h2>
+                A Bouquet
+                <span>Full of Feelings</span>
+            </h2>
+
+            <p>
+                Every Bloomora bouquet is thoughtfully
+                designed to make your loved ones feel
+                truly special.
+            </p>
+
+            <br>
+
+            <a
+                href="flowers.html"
+                class="btn primary-btn">
+
+                Shop Flowers
+
+            </a>
+
+        </div>
+
+
+        <div class="bouquet-feature-art">
+
+            💐
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            🌸 <strong>Bloomora</strong>
+
+            <p>
+                Where every flower tells a story.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="flowers.html">
+                Flowers
+            </a>
+
+            <a href="bouquets.html">
+                Bouquets
+            </a>
+
+            <a href="occasions.html">
+                Occasions
+            </a>
+
+            <a href="cart.html">
+                Cart
+            </a>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Bloomora Flower Boutique
+            </p>
+
+            <p>
+                Made with 🌸 & Love
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

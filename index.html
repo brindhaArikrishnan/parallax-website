@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bloomora | Flower Boutique</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌸 <span>Bloom</span>ora
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="flowers.html">Flowers</a>
+            <a href="bouquets.html">Bouquets</a>
+            <a href="occasions.html">Occasions</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <a href="cart.html" class="cart-button">
+            🛒 Cart
+        </a>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+
+            <source src="./home-video.mp4" type="video/mp4">
+
+        </video>
+
+        <div class="hero-overlay"></div>
+
+
+        <!-- Floating petals -->
+
+        <div class="petals">
+
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌺</span>
+            <span>🌷</span>
+            <span>🌸</span>
+            <span>🌹</span>
+            <span>🌼</span>
+            <span>🌸</span>
+
+        </div>
+
+
+        <div class="hero-content">
+
+            <p class="hero-label">
+                WELCOME TO BLOOMORA
+            </p>
+
+            <h1>
+                Where Flowers
+                <span>Speak From The Heart</span>
+            </h1>
+
+            <p class="hero-description">
+                Discover beautiful flowers and elegant bouquets
+                created to make every special moment unforgettable.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="flowers.html" class="btn primary-btn">
+                    Explore Flowers
+                </a>
+
+                <a href="#about" class="btn secondary-btn">
+                    Our Story
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="scroll-indicator">
+
+            <span>SCROLL TO DISCOVER</span>
+
+            <div class="scroll-line"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INTRO ================= -->
+
+    <section class="intro-section">
+
+        <div class="section-label">
+            THE BLOOMORA EXPERIENCE
+        </div>
+
+        <h2>
+            Flowers Made
+            <span>Beautifully Personal</span>
+        </h2>
+
+        <p>
+            At Bloomora, every flower carries a feeling.
+            From simple surprises to unforgettable celebrations,
+            we carefully create floral experiences that speak
+            directly to the heart.
+        </p>
+
+    </section>
+
+
+    <!-- ================= FLOWERS ================= -->
+
+    <section class="home-section" id="flowers">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="section-label">
+                    OUR COLLECTION
+                </p>
+
+                <h2>
+                    Fresh From
+                    <span>The Garden</span>
+                </h2>
+            </div>
+
+            <a href="flowers.html" class="view-link">
+                View All Flowers →
+            </a>
+
+        </div>
+
+
+        <div class="flower-grid">
+
+            <div class="flower-card">
+
+                <div class="flower-icon">
+                    🌹
+                </div>
+
+                <p>ROSES</p>
+
+                <h3>
+                    Eternal Red Roses
+                </h3>
+
+                <span>
+                    Love • Romance • Passion
+                </span>
+
+            </div>
+
+
+            <div class="flower-card">
+
+                <div class="flower-icon">
+                    🌷
+                </div>
+
+                <p>TULIPS</p>
+
+                <h3>
+                    Elegant Pink Tulips
+                </h3>
+
+                <span>
+                    Grace • Beauty • Joy
+                </span>
+
+            </div>
+
+
+            <div class="flower-card">
+
+                <div class="flower-icon">
+                    🌻
+                </div>
+
+                <p>SUNFLOWERS</p>
+
+                <h3>
+                    Sunshine Blooms
+                </h3>
+
+                <span>
+                    Happiness • Warmth • Energy
+                </span>
+
+            </div>
+
+
+            <div class="flower-card">
+
+                <div class="flower-icon">
+                    🌸
+                </div>
+
+                <p>LILIES</p>
+
+                <h3>
+                    Pure White Lilies
+                </h3>
+
+                <span>
+                    Peace • Purity • Elegance
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BOUQUETS ================= -->
+
+    <section class="bouquet-section">
+
+        <div class="bouquet-content">
+
+            <p class="section-label">
+                SIGNATURE BOUQUETS
+            </p>
+
+            <h2>
+                Made With
+                <span>Love & Care</span>
+            </h2>
+
+            <p>
+                Thoughtfully designed bouquets for the people
+                who make your world brighter.
+            </p>
+
+            <a href="bouquets.html" class="btn primary-btn">
+                Explore Bouquets
+            </a>
+
+        </div>
+
+
+        <div class="bouquet-cards">
+
+            <div class="bouquet-card">
+
+                <div class="bouquet-emoji">
+                    💐
+                </div>
+
+                <h3>
+                    Forever Love
+                </h3>
+
+                <p>
+                    Classic romantic bouquet
+                </p>
+
+                <strong>
+                    ₹899
+                </strong>
+
+                <button
+                    onclick="addToCart('Forever Love', 899)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <div class="bouquet-card featured">
+
+                <div class="popular">
+                    MOST LOVED
+                </div>
+
+                <div class="bouquet-emoji">
+                    🌹
+                </div>
+
+                <h3>
+                    Blooming Beauty
+                </h3>
+
+                <p>
+                    Premium romantic arrangement
+                </p>
+
+                <strong>
+                    ₹1,199
+                </strong>
+
+                <button
+                    onclick="addToCart('Blooming Beauty', 1199)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <div class="bouquet-card">
+
+                <div class="bouquet-emoji">
+                    🌺
+                </div>
+
+                <h3>
+                    Elegant Rose Box
+                </h3>
+
+                <p>
+                    Luxury flower box
+                </p>
+
+                <strong>
+                    ₹1,499
+                </strong>
+
+                <button
+                    onclick="addToCart('Elegant Rose Box', 1499)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= OCCASIONS ================= -->
+
+    <section class="occasion-section">
+
+        <div class="section-heading center">
+
+            <p class="section-label">
+                CELEBRATE EVERY MOMENT
+            </p>
+
+            <h2>
+                Flowers For
+                <span>Every Occasion</span>
+            </h2>
+
+            <p>
+                Whatever the moment, let flowers say what words cannot.
+            </p>
+
+        </div>
+
+
+        <div class="occasion-grid">
+
+            <a href="occasions.html" class="occasion-card">
+
+                <div>🎂</div>
+
+                <h3>
+                    Birthday
+                </h3>
+
+                <p>
+                    Make their day bloom.
+                </p>
+
+            </a>
+
+
+            <a href="occasions.html" class="occasion-card">
+
+                <div>💍</div>
+
+                <h3>
+                    Anniversary
+                </h3>
+
+                <p>
+                    Celebrate your love.
+                </p>
+
+            </a>
+
+
+            <a href="occasions.html" class="occasion-card">
+
+                <div>💖</div>
+
+                <h3>
+                    Love
+                </h3>
+
+                <p>
+                    Say it with flowers.
+                </p>
+
+            </a>
+
+
+            <a href="occasions.html" class="occasion-card">
+
+                <div>🎉</div>
+
+                <h3>
+                    Celebration
+                </h3>
+
+                <p>
+                    Bloom with happiness.
+                </p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about-section" id="about">
+
+        <div class="about-content">
+
+            <p class="section-label">
+                OUR STORY
+            </p>
+
+            <h2>
+                More Than
+                <span>Just Flowers</span>
+            </h2>
+
+            <p>
+                Bloomora was created with one simple idea —
+                flowers can express emotions that words sometimes
+                cannot.
+            </p>
+
+            <p>
+                Every arrangement is carefully designed with
+                freshness, elegance and love, so your special
+                moments become memories worth keeping.
+            </p>
+
+            <a href="flowers.html" class="btn primary-btn">
+                Discover Bloomora
+            </a>
+
+        </div>
+
+
+        <div class="about-symbol">
+
+            <div class="circle">
+
+                <span>🌸</span>
+
+                <p>
+                    BLOOM<br>
+                    WITH<br>
+                    LOVE
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUOTE ================= -->
+
+    <section class="quote-section">
+
+        <div class="quote-overlay"></div>
+
+        <div class="quote-content">
+
+            <div class="quote-mark">
+                “
+            </div>
+
+            <h2>
+                Flowers are the music
+                <br>
+                of the ground.
+            </h2>
+
+            <p>
+                — Bloomora
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            🌸 <strong>Bloomora</strong>
+
+            <p>
+                Where every flower tells a story.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="flowers.html">
+                Flowers
+            </a>
+
+            <a href="bouquets.html">
+                Bouquets
+            </a>
+
+            <a href="occasions.html">
+                Occasions
+            </a>
+
+            <a href="cart.html">
+                Cart
+            </a>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Bloomora Flower Boutique
+            </p>
+
+            <p>
+                Made with 🌸 & Love
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

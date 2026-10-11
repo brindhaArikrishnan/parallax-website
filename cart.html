@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Cart | Bloomora</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .cart-page {
+            min-height: 100vh;
+            background: #fffaf8;
+            padding-top: 100px;
+        }
+
+        .cart-hero {
+            text-align: center;
+            padding: 65px 20px 45px;
+        }
+
+        .cart-label {
+            color: #9a6472;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .cart-hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            color: #34262a;
+            margin: 15px 0;
+        }
+
+        .cart-hero p {
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .cart-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px 25px 100px;
+        }
+
+        #cartItems {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto;
+            align-items: center;
+            gap: 22px;
+            background: white;
+            padding: 18px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(55, 30, 35, 0.08);
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #f5e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .cart-item-details h3 {
+            font-family: Georgia, serif;
+            color: #34262a;
+            font-size: 1.3rem;
+            margin-bottom: 7px;
+        }
+
+        .cart-item-details p {
+            color: #9a6472;
+            font-weight: 600;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #ead9da;
+            padding: 6px 10px;
+            border-radius: 25px;
+        }
+
+        .quantity-control button {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 50%;
+            background: #f5e8e8;
+            color: #5f4148;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .quantity-control span {
+            min-width: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #34262a;
+        }
+
+        .cart-item-total {
+            font-weight: 700;
+            color: #34262a;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .remove-button {
+            border: none;
+            background: transparent;
+            color: #a66b78;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        .remove-button:hover {
+            color: #6d3947;
+        }
+
+        .empty-cart {
+            text-align: center;
+            background: white;
+            padding: 70px 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(55, 30, 35, 0.08);
+        }
+
+        .empty-cart-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h2 {
+            font-family: Georgia, serif;
+            color: #34262a;
+            font-weight: 400;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .empty-cart p {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .cart-shop-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #34262a;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 30px;
+            transition: 0.3s ease;
+        }
+
+        .cart-shop-button:hover {
+            background: #9a6472;
+            transform: translateY(-2px);
+        }
+
+        .cart-summary {
+            margin-top: 35px;
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 12px 40px rgba(55, 30, 35, 0.09);
+            max-width: 500px;
+            margin-left: auto;
+        }
+
+        .cart-summary h2 {
+            font-family: Georgia, serif;
+            color: #34262a;
+            font-weight: 400;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            color: #666;
+            border-bottom: 1px solid #f0e5e5;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #34262a;
+        }
+
+        .checkout-button {
+            width: 100%;
+            border: none;
+            background: #34262a;
+            color: white;
+            padding: 16px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .checkout-button:hover {
+            background: #9a6472;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 750px) {
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+            }
+
+            .cart-item-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .quantity-control,
+            .cart-item-total {
+                grid-column: 2;
+            }
+
+            .cart-item-total {
+                text-align: left;
+            }
+
+            .remove-button {
+                grid-column: 2;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cart-container {
+                padding: 10px 15px 70px;
+            }
+
+            .cart-summary {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Bloomora
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="flowers.html">Flowers</a>
+            <a href="bouquets.html">Bouquets</a>
+            <a href="occasions.html">Occasions</a>
+            <a href="index.html#about">About</a>
+        </div>
+
+        <a href="cart.html" class="cart-button">
+            🛍️ Cart
+        </a>
+
+    </nav>
+
+
+    <!-- CART HERO -->
+    <section class="cart-hero">
+
+        <span class="cart-label">
+            Bloomora Collection
+        </span>
+
+        <h1>Your Flower Cart</h1>
+
+        <p>
+            Your beautiful choices are waiting for you.
+        </p>
+
+    </section>
+
+
+    <!-- CART -->
+    <main class="cart-container">
+
+        <!-- JavaScript will insert cart items here -->
+        <div id="cartItems"></div>
+
+
+        <!-- CART SUMMARY -->
+        <div class="cart-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Total Items</span>
+                <span id="totalItems">0</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">₹0</span>
+            </div>
+
+            <div class="summary-total">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+
+            <button
+                class="checkout-button"
+                onclick="checkout()"
+            >
+                Proceed to Checkout →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h2>Bloomora</h2>
+
+            <p>
+                Where flowers speak from the heart.
+            </p>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="flowers.html">Flowers</a>
+                <a href="bouquets.html">Bouquets</a>
+                <a href="occasions.html">Occasions</a>
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Bloomora. Made with love 🌸
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

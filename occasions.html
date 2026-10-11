@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Occasions | Bloomora</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .occasions-page {
+            background: #fffaf8;
+            min-height: 100vh;
+        }
+
+        .occasion-hero {
+            position: relative;
+            height: 88vh;
+            min-height: 620px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .occasion-background-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .occasion-video-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(25, 15, 18, 0.45),
+                    rgba(25, 15, 18, 0.25),
+                    rgba(25, 15, 18, 0.65)
+                );
+            z-index: 1;
+        }
+
+        .occasion-hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 850px;
+            padding: 30px;
+        }
+
+        .occasion-hero-content .small-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            opacity: 0.9;
+        }
+
+        .occasion-hero-content h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 25px;
+            text-shadow: 0 5px 30px rgba(0,0,0,0.35);
+        }
+
+        .occasion-hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: auto;
+            opacity: 0.95;
+        }
+
+        .occasion-main {
+            padding: 100px 7%;
+        }
+
+        .occasion-heading {
+            text-align: center;
+            margin-bottom: 65px;
+        }
+
+        .occasion-heading span {
+            color: #9a6472;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .occasion-heading h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            font-weight: 400;
+            color: #34262a;
+            margin: 15px 0;
+        }
+
+        .occasion-heading p {
+            max-width: 650px;
+            margin: auto;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        .occasion-products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .occasion-product {
+            position: relative;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(55, 30, 35, 0.10);
+            transition: 0.4s ease;
+        }
+
+        .occasion-product:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(55, 30, 35, 0.17);
+        }
+
+        .occasion-product-image {
+            height: 330px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .occasion-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .occasion-product:hover img {
+            transform: scale(1.08);
+        }
+
+        .occasion-tag {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: rgba(255,255,255,0.92);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            color: #714b56;
+            font-weight: 600;
+        }
+
+        .occasion-product-info {
+            padding: 25px;
+        }
+
+        .occasion-product-info h3 {
+            font-family: Georgia, serif;
+            font-size: 1.45rem;
+            color: #34262a;
+            margin-bottom: 8px;
+        }
+
+        .occasion-product-info p {
+            color: #888;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .occasion-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .occasion-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #8d5362;
+        }
+
+        .occasion-add {
+            border: none;
+            background: #34262a;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            transition: 0.3s ease;
+        }
+
+        .occasion-add:hover {
+            background: #9a6472;
+            transform: translateY(-2px);
+        }
+
+        .occasion-message {
+            margin-top: 110px;
+            padding: 70px 30px;
+            border-radius: 28px;
+            text-align: center;
+            background: linear-gradient(
+                135deg,
+                #f6e8e7,
+                #fdf5f2
+            );
+        }
+
+        .occasion-message h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            font-weight: 400;
+            color: #34262a;
+            margin-bottom: 18px;
+        }
+
+        .occasion-message p {
+            max-width: 650px;
+            margin: auto;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 900px) {
+            .occasion-products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .occasion-main {
+                padding: 80px 5%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .occasion-hero {
+                height: 80vh;
+                min-height: 550px;
+            }
+
+            .occasion-products {
+                grid-template-columns: 1fr;
+            }
+
+            .occasion-product-image {
+                height: 300px;
+            }
+
+            .occasion-main {
+                padding: 65px 20px;
+            }
+
+            .occasion-message {
+                margin-top: 70px;
+                padding: 50px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body class="occasions-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Bloomora</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="flowers.html">Flowers</a>
+            <a href="bouquets.html">Bouquets</a>
+            <a href="occasions.html" class="active">Occasions</a>
+            <a href="index.html#about">About</a>
+        </div>
+
+        <a href="cart.html" class="cart-button">
+            🛍️ Cart
+        </a>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="occasion-hero">
+
+        <video
+            class="occasion-background-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+        >
+            <source src="occasion-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="occasion-video-overlay"></div>
+
+        <div class="occasion-hero-content">
+
+            <span class="small-label">
+                Flowers For Every Moment
+            </span>
+
+            <h1>Celebrate Every Feeling</h1>
+
+            <p>
+                From birthdays and anniversaries to heartfelt surprises,
+                Bloomora brings the perfect flowers for every beautiful moment.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- OCCASIONS -->
+    <main class="occasion-main">
+
+        <div class="occasion-heading">
+
+            <span>Choose Your Moment</span>
+
+            <h2>Made For Every Occasion</h2>
+
+            <p>
+                Some moments deserve more than words.
+                Choose a Bloomora creation that says exactly
+                what your heart wants to express.
+            </p>
+
+        </div>
+
+
+        <div class="occasion-products">
+
+
+            <!-- Birthday -->
+            <div class="occasion-product">
+
+                <div class="occasion-product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85"
+                        alt="Birthday flowers"
+                    >
+
+                    <span class="occasion-tag">
+                        BIRTHDAY
+                    </span>
+
+                </div>
+
+                <div class="occasion-product-info">
+
+                    <h3>Birthday Bloom</h3>
+
+                    <p>
+                        Bright and joyful flowers to make
+                        their special day even happier.
+                    </p>
+
+                    <div class="occasion-bottom">
+
+                        <span class="occasion-price">
+                            ₹999
+                        </span>
+
+                        <button
+                            class="occasion-add"
+                            onclick="addToCart('Birthday Bloom', 999)"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Anniversary -->
+            <div class="occasion-product">
+
+                <div class="occasion-product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85"
+                        alt="Anniversary flowers"
+                    >
+
+                    <span class="occasion-tag">
+                        ANNIVERSARY
+                    </span>
+
+                </div>
+
+                <div class="occasion-product-info">
+
+                    <h3>Forever Together</h3>
+
+                    <p>
+                        Romantic blooms designed to celebrate
+                        love, memories and togetherness.
+                    </p>
+
+                    <div class="occasion-bottom">
+
+                        <span class="occasion-price">
+                            ₹1,499
+                        </span>
+
+                        <button
+                            class="occasion-add"
+                            onclick="addToCart('Forever Together', 1499)"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Love -->
+            <div class="occasion-product">
+
+                <div class="occasion-product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=900&q=85"
+                        alt="Love flowers"
+                    >
+
+                    <span class="occasion-tag">
+                        LOVE
+                    </span>
+
+                </div>
+
+                <div class="occasion-product-info">
+
+                    <h3>With All My Heart</h3>
+
+                    <p>
+                        A romantic arrangement made to express
+                        feelings that words cannot capture.
+                    </p>
+
+                    <div class="occasion-bottom">
+
+                        <span class="occasion-price">
+                            ₹1,299
+                        </span>
+
+                        <button
+                            class="occasion-add"
+                            onclick="addToCart('With All My Heart', 1299)"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Thank You -->
+            <div class="occasion-product">
+
+                <div class="occasion-product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=900&q=85"
+                        alt="Thank you flowers"
+                    >
+
+                    <span class="occasion-tag">
+                        THANK YOU
+                    </span>
+
+                </div>
+
+                <div class="occasion-product-info">
+
+                    <h3>Grateful Garden</h3>
+
+                    <p>
+                        A graceful bouquet to say thank you
+                        in the sweetest way.
+                    </p>
+
+                    <div class="occasion-bottom">
+
+                        <span class="occasion-price">
+                            ₹899
+                        </span>
+
+                        <button
+                            class="occasion-add"
+                            onclick="addToCart('Grateful Garden', 899)"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Congratulations -->
+            <div class="occasion-product">
+
+                <div class="occasion-product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=900&q=85"
+                        alt="Congratulations flowers"
+                    >
+
+                    <span class="occasion-tag">
+                        CONGRATULATIONS
+                    </span>
+
+                </div>
+
+                <div class="occasion-product-info">
+
+                    <h3>Celebrate Success</h3>
+
+                    <p>
+                        Elegant blooms for new beginnings,
+                        achievements and proud moments.
+                    </p>
+
+                    <div class="occasion-bottom">
+
+                        <span class="occasion-price">
+                            ₹1,099
+                        </span>
+
+                        <button
+                            class="occasion-add"
+                            onclick="addToCart('Celebrate Success', 1099)"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Just Because -->
+            <div class="occasion-product">
+
+                <div class="occasion-product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=85"
+                        alt="Beautiful flower bouquet"
+                    >
+
+                    <span class="occasion-tag">
+                        JUST BECAUSE
+                    </span>
+
+                </div>
+
+                <div class="occasion-product-info">
+
+                    <h3>A Little Surprise</h3>
+
+                    <p>
+                        Because sometimes the best reason
+                        to send flowers is simply caring.
+                    </p>
+
+                    <div class="occasion-bottom">
+
+                        <span class="occasion-price">
+                            ₹799
+                        </span>
+
+                        <button
+                            class="occasion-add"
+                            onclick="addToCart('A Little Surprise', 799)"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FINAL MESSAGE -->
+        <div class="occasion-message">
+
+            <h2>Every Flower Tells A Story</h2>
+
+            <p>
+                Make someone's ordinary day extraordinary.
+                Choose your flowers, add them to your cart,
+                and let Bloomora deliver your feelings beautifully.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h2>Bloomora</h2>
+
+            <p>
+                Where flowers speak from the heart.
+            </p>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="flowers.html">Flowers</a>
+                <a href="bouquets.html">Bouquets</a>
+                <a href="occasions.html">Occasions</a>
+                <a href="cart.html">Cart</a>
+
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Bloomora. Made with love 🌸
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bloomora | Flowers</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Georgia", serif;
+            background: #fffaf7;
+            color: #332b2b;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            background: rgba(30, 20, 22, 0.72);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f4b6c2;
+        }
+
+        .cart-button {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 10px 18px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .cart-button:hover {
+            background: white;
+            color: #332b2b;
+        }
+
+        /* ================= HERO ================= */
+
+        .flowers-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 650px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flowers-background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+        }
+
+        .flowers-video-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    rgba(25, 15, 20, 0.48),
+                    rgba(25, 15, 20, 0.68)
+                );
+            z-index: -2;
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 900px;
+            padding: 30px;
+            animation: fadeUp 1.4s ease;
+        }
+
+        .hero-label {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            color: #f7d5dc;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(50px, 8vw, 100px);
+            line-height: 0.95;
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #f9eeee;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 15px 32px;
+            border: 1px solid white;
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .hero-button:hover {
+            background: white;
+            color: #302125;
+        }
+
+        /* ================= SECTION ================= */
+
+        .flowers-section {
+            padding: 110px 7%;
+            background: #fffaf7;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 70px;
+        }
+
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            color: #ad6878;
+            margin-bottom: 15px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(38px, 5vw, 60px);
+            font-weight: normal;
+            margin-bottom: 18px;
+        }
+
+        .section-heading p {
+            color: #74696a;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* ================= PRODUCT GRID ================= */
+
+        .flower-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .flower-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(65, 35, 40, 0.10);
+            transition: transform 0.45s ease, box-shadow 0.45s ease;
+        }
+
+        .flower-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(65, 35, 40, 0.18);
+        }
+
+        .flower-image {
+            width: 100%;
+            height: 360px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .flower-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s ease;
+        }
+
+        .flower-card:hover .flower-image img {
+            transform: scale(1.08);
+        }
+
+        .flower-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .flower-info h3 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .flower-info p {
+            color: #817476;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            display: block;
+            font-size: 21px;
+            color: #a34f65;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .add-button {
+            border: none;
+            background: #38272c;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .add-button:hover {
+            background: #a34f65;
+            transform: translateY(-2px);
+        }
+
+        /* ================= BOTTOM MESSAGE ================= */
+
+        .flower-message {
+            margin-top: 100px;
+            min-height: 420px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                linear-gradient(
+                    rgba(45, 25, 30, 0.68),
+                    rgba(45, 25, 30, 0.68)
+                ),
+                url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1600&q=85")
+                center/cover;
+        }
+
+        .message-content {
+            color: white;
+            padding: 30px;
+            max-width: 750px;
+        }
+
+        .message-content h2 {
+            font-size: clamp(38px, 5vw, 65px);
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .message-content p {
+            line-height: 1.8;
+            font-size: 17px;
+            color: #f8e9ec;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #24191c;
+            color: white;
+            padding: 55px 7%;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        footer p {
+            color: #cfc0c2;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer-line {
+            width: 70px;
+            height: 1px;
+            background: #c88998;
+            margin: 25px auto;
+        }
+
+        /* ================= ANIMATION ================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .flower-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .flowers-hero {
+                min-height: 600px;
+            }
+
+            .hero-content h1 {
+                font-size: 52px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .flowers-section {
+                padding: 80px 20px;
+            }
+
+            .flower-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flower-image {
+                height: 330px;
+            }
+
+            .flower-message {
+                margin-top: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            Bloomora
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="flowers.html">Flowers</a>
+
+            <a href="bouquets.html">Bouquets</a>
+
+            <a href="occasions.html">Occasions</a>
+
+            <a href="index.html#about">About</a>
+
+            <a href="cart.html" class="cart-button">
+                🛒 Cart
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="flowers-hero">
+
+        <video
+            class="flowers-background-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+
+            <source src="./flowers-video.mp4" type="video/mp4">
+
+        </video>
+
+        <div class="flowers-video-overlay"></div>
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                Bloomora Collection
+            </div>
+
+            <h1>
+                Find Your<br>
+                Perfect Bloom
+            </h1>
+
+            <p>
+                Beautiful flowers carefully selected to turn
+                ordinary moments into unforgettable memories.
+            </p>
+
+            <a href="#collection" class="hero-button">
+                Explore Collection
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FLOWER COLLECTION ================= -->
+
+    <section class="flowers-section" id="collection">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Our Flowers
+            </div>
+
+            <h2>
+                Flowers That Speak
+            </h2>
+
+            <p>
+                From romantic roses to cheerful sunflowers,
+                discover blooms for every feeling and every moment.
+            </p>
+
+        </div>
+
+
+        <div class="flower-grid">
+
+
+            <!-- RED ROSES -->
+
+            <div class="flower-card">
+
+                <div class="flower-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&w=900&q=85"
+                        alt="Eternal Red Roses">
+
+                </div>
+
+                <div class="flower-info">
+
+                    <h3>
+                        Eternal Red Roses
+                    </h3>
+
+                    <p>
+                        Classic red roses that express
+                        love, passion and timeless romance.
+                    </p>
+
+                    <span class="price">
+                        ₹799
+                    </span>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart('Eternal Red Roses', 799)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PINK TULIPS -->
+
+            <div class="flower-card">
+
+                <div class="flower-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85"
+                        alt="Elegant Pink Tulips">
+
+                </div>
+
+                <div class="flower-info">
+
+                    <h3>
+                        Elegant Pink Tulips
+                    </h3>
+
+                    <p>
+                        Soft pink tulips bringing elegance,
+                        sweetness and happiness.
+                    </p>
+
+                    <span class="price">
+                        ₹899
+                    </span>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart('Elegant Pink Tulips', 899)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUNFLOWERS -->
+
+            <div class="flower-card">
+
+                <div class="flower-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1470509037663-253afd7f0f51?auto=format&fit=crop&w=900&q=85"
+                        alt="Sunshine Bouquet">
+
+                </div>
+
+                <div class="flower-info">
+
+                    <h3>
+                        Sunshine Bouquet
+                    </h3>
+
+                    <p>
+                        Bright yellow sunflowers designed
+                        to bring instant joy and positivity.
+                    </p>
+
+                    <span class="price">
+                        ₹699
+                    </span>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart('Sunshine Bouquet', 699)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- WHITE LILIES -->
+
+            <div class="flower-card">
+
+                <div class="flower-image">
+
+                    <img
+                        src="https://images.pexels.com/photos/15312442/pexels-photo-15312442.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                        alt="Pure White Lilies">
+
+                </div>
+
+                <div class="flower-info">
+
+                    <h3>
+                        Pure White Lilies
+                    </h3>
+
+                    <p>
+                        Elegant white lilies symbolizing
+                        purity, peace and graceful beauty.
+                    </p>
+
+                    <span class="price">
+                        ₹999
+                    </span>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart('Pure White Lilies', 999)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MIXED BOUQUET -->
+
+            <div class="flower-card">
+
+                <div class="flower-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=85"
+                        alt="Bloomora Mixed Bouquet">
+
+                </div>
+
+                <div class="flower-info">
+
+                    <h3>
+                        Bloomora Mixed Bouquet
+                    </h3>
+
+                    <p>
+                        A colorful mix of beautiful flowers
+                        for someone truly special.
+                    </p>
+
+                    <span class="price">
+                        ₹1,299
+                    </span>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart('Bloomora Mixed Bouquet', 1299)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- LUXURY FLOWER BOX -->
+
+            <div class="flower-card">
+
+                <div class="flower-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=85"
+                        alt="Bloomora Luxury Flower Box">
+
+                </div>
+
+                <div class="flower-info">
+
+                    <h3>
+                        Bloomora Luxury Box
+                    </h3>
+
+                    <p>
+                        A premium flower arrangement created
+                        for unforgettable celebrations.
+                    </p>
+
+                    <span class="price">
+                        ₹1,799
+                    </span>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart('Bloomora Luxury Box', 1799)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= MESSAGE ================= -->
+
+        <div class="flower-message">
+
+            <div class="message-content">
+
+                <h2>
+                    Every Flower Has A Story
+                </h2>
+
+                <p>
+                    Whether you want to say “I Love You”,
+                    “Thank You”, “Congratulations” or simply
+                    “I’m Thinking Of You” — Bloomora helps
+                    you express it beautifully.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h2>
+            Bloomora
+        </h2>
+
+        <div class="footer-line"></div>
+
+        <p>
+            Where Flowers Speak From The Heart 🌸
+        </p>
+
+        <p>
+            © 2026 Bloomora. Made with love.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

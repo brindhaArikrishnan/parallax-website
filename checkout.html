@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | Bloomora</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .checkout-page {
+            min-height: 100vh;
+            background: #fffaf8;
+            padding-top: 100px;
+        }
+
+        .checkout-hero {
+            text-align: center;
+            padding: 60px 20px 45px;
+        }
+
+        .checkout-label {
+            color: #9a6472;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .checkout-hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            color: #34262a;
+            margin: 15px 0;
+        }
+
+        .checkout-hero p {
+            color: #777;
+        }
+
+        .checkout-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 20px 25px 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 35px;
+        }
+
+        .checkout-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 12px 40px rgba(55, 30, 35, 0.08);
+        }
+
+        .checkout-card h2 {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            color: #34262a;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #514044;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ead9da;
+            border-radius: 12px;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fffdfc;
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #9a6472;
+            box-shadow: 0 0 0 3px rgba(154, 100, 114, 0.08);
+        }
+
+        .payment-options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .payment-option {
+            border: 1px solid #ead9da;
+            border-radius: 14px;
+            padding: 14px 16px;
+            transition: 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #9a6472;
+        }
+
+        .payment-option label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #514044;
+        }
+
+        .checkout-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0e5e5;
+            color: #514044;
+        }
+
+        .checkout-item strong {
+            color: #34262a;
+        }
+
+        .empty-checkout {
+            text-align: center;
+            padding: 30px 10px;
+            color: #777;
+        }
+
+        .checkout-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #34262a;
+            padding-top: 25px;
+        }
+
+        .place-order-button {
+            width: 100%;
+            border: none;
+            background: #34262a;
+            color: white;
+            padding: 16px;
+            border-radius: 30px;
+            margin-top: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .place-order-button:hover {
+            background: #9a6472;
+            transform: translateY(-2px);
+        }
+
+        .secure-note {
+            text-align: center;
+            color: #888;
+            font-size: 0.78rem;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 850px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .checkout-container {
+                padding: 10px 15px 70px;
+            }
+
+            .checkout-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body class="checkout-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Bloomora
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="flowers.html">Flowers</a>
+            <a href="bouquets.html">Bouquets</a>
+            <a href="occasions.html">Occasions</a>
+            <a href="index.html#about">About</a>
+        </div>
+
+        <a href="cart.html" class="cart-button">
+            🛍️ Cart
+        </a>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="checkout-hero">
+
+        <span class="checkout-label">
+            Bloomora
+        </span>
+
+        <h1>Complete Your Order</h1>
+
+        <p>
+            Just a few details and your flowers will be on their way. 🌸
+        </p>
+
+    </section>
+
+
+    <!-- CHECKOUT -->
+    <main class="checkout-container">
+
+
+        <!-- CUSTOMER DETAILS -->
+        <section class="checkout-card">
+
+            <h2>Delivery Details</h2>
+
+            <div class="form-group">
+
+                <label for="customerName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Enter your full name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="customerEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="customerEmail"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="customerPhone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerPhone"
+                    placeholder="Enter your phone number"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="customerAddress">
+                    Delivery Address
+                </label>
+
+                <textarea
+                    id="customerAddress"
+                    placeholder="Enter your complete delivery address"
+                ></textarea>
+
+            </div>
+
+
+            <h2 style="margin-top:35px;">
+                Payment Method
+            </h2>
+
+            <div class="form-group">
+
+                <select id="paymentMethod">
+
+                    <option value="Cash on Delivery">
+                        💵 Cash on Delivery
+                    </option>
+
+                    <option value="UPI">
+                        📱 UPI
+                    </option>
+
+                    <option value="Credit / Debit Card">
+                        💳 Credit / Debit Card
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORDER SUMMARY -->
+        <section class="checkout-card">
+
+            <h2>Your Order</h2>
+
+            <div
+                id="checkoutItems"
+                class="checkout-items"
+            >
+                <!-- JavaScript will add products here -->
+            </div>
+
+
+            <div class="checkout-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="checkoutTotal">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <button
+                class="place-order-button"
+                onclick="placeOrder()"
+            >
+                Place Order 🌸
+            </button>
+
+            <p class="secure-note">
+                🔒 Your order details are securely stored for this demo.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h2>Bloomora</h2>
+
+            <p>
+                Where flowers speak from the heart.
+            </p>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="flowers.html">Flowers</a>
+                <a href="bouquets.html">Bouquets</a>
+                <a href="occasions.html">Occasions</a>
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Bloomora. Made with love 🌸
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
